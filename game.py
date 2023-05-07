@@ -1,4 +1,7 @@
 #initial procedural version test of a game in progress. 
+
+#needs for game:
+
 #need to expand to a class based version with a map and inventory system.
 #need to add more commands and a way to win the game.
 #need to add a way to lose the game.
