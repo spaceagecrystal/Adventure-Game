@@ -74,7 +74,7 @@ def first_level():
         print("You look down the well and see a lost cat.")
         first_level()
     if command == "get cat":
-        print("You got the cat! " + username + " adds cat to inventory.")
+        print("You got the cat! " + profile.name + " adds cat to inventory.")
         first_level()
     else:
         print("I don't understand that.")
