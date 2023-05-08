@@ -20,7 +20,15 @@
 #need to add a way to get a list of armor.
 #need to add a way to get a list of spells.
 
+#Dice rolling system
 
+import dice
+from dice import D20
+from dice import D12
+from dice import D10
+from dice import D8
+from dice import D6
+from dice import D4
 
 #character creation
 
@@ -93,7 +101,9 @@ def second_level():
         print("I don't understand that.")
         second_level()
 
-    
+
+newRoll = D20()
+print(newRoll)
 
 #start game
 first_level()
