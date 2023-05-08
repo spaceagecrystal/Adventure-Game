@@ -82,7 +82,11 @@ def first_level():
         print("You look down the well and see a lost cat.")
         first_level()
     if command == "get cat":
+       newRoll = D4() 
+       if newRoll == 1:
         print("You got the cat! " + profile.name + " adds cat to inventory.")
+       else:
+        print("You failed to get the cat.Try again")
         first_level()
     else:
         print("I don't understand that.")
@@ -101,9 +105,6 @@ def second_level():
         print("I don't understand that.")
         second_level()
 
-
-newRoll = D20()
-print(newRoll)
 
 #start game
 first_level()
