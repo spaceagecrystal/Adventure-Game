@@ -30,6 +30,12 @@ from dice import D8
 from dice import D6
 from dice import D4
 
+import sqlite3
+import sql
+
+cursor = sql.get_cursor()
+sql.select_using_like(cursor, text='Python')
+
 #character creation
 
 class character:
