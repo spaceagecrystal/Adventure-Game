@@ -5,7 +5,6 @@
 #need to expand to a class based version with a map and inventory system.
 #need to add more commands and a way to win the game.
 #need to add a way to lose the game.
-#need to add a way to quit the game.
 #need to add a way to save the game.
 #need to add a way to load the game.
 #need to add a way to get help.
