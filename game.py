@@ -24,8 +24,8 @@ import dice
 import sql
 import sys
 
-cursor = sql.get_cursor()
-sql.select_using_like(cursor, text='Python')
+#cursor = sql.get_cursor()
+#sql.select_using_like(cursor, text='Python')
 
 #character creation
 
