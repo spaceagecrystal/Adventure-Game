@@ -33,6 +33,7 @@ from dice import D4
 #character creation
 
 class character:
+    hitpoints = 10
     def __init__(self, name, job):
         self.name = name
         self.job = job
@@ -41,14 +42,39 @@ class character:
     def printjob(self):
         print(self.job)
 
-
 ############ class version of character creation
+
 
 name = input("Enter name:")
 job = input("Enter job:")
 profile = character(name, job)
 profile.printname()
 profile.printjob()
+
+#class version of enemy creation
+
+
+class enemy:
+    def __init__(self, hp, description, attackkNum, defense, enemyname):
+        self.hp = hp
+        self.name = enemyname
+        self.description = description
+        self.attackNum = attackkNum
+        self.defense = defense
+
+    def attack(self):
+        print(self.name  + " attacks!")
+        newRoll = D4()
+        if newRoll == 1:
+            print(self.name + " hits!")
+    def defend(self):
+        newRoll = D4()
+        if newRoll != 1:
+            print("You miss!")
+
+enemy1 = enemy(10, "Groat,a small rat", 1, 1, "Groat")
+
+battleState = False
 
 ########### list version of character creation
 
@@ -65,10 +91,28 @@ room = "first room"
 
 #functions
 
+def battle():
+    global battleState
+    newRoll = D4()
+    if newRoll == 1:
+       battleState = True
+       enemy1.attack()
+       command = input("Enter command:")
+       if command == "attack":
+            newRoll = D4()
+            enemy1.hp = enemy1.hp - 5
+            print("You hit" + enemy1.name + " for 5 damage!")
+            if enemy1.hp <= 0:
+                print(enemy1.name + " is deafeted! It runs away!")
+                battleState = False
+                first_level()
+            else: 
+                battle()
+
 def first_level():
     global room
     room = "first room"
-    
+    battle()
     command = input("Enter command:")
     if room == "first room" and command == "look room":
         print("You are in a garden village, the air is fresh and the sun is shining.")
