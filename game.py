@@ -8,7 +8,6 @@
 #need to add a way to quit the game.
 #need to add a way to save the game.
 #need to add a way to load the game.
-#need to add a way to restart the game.
 #need to add a way to get help.
 #need to add a way to get a list of commands.
 #need to add a way to get a list of items.
@@ -23,15 +22,8 @@
 #Dice rolling system
 
 import dice
-from dice import D20
-from dice import D12
-from dice import D10
-from dice import D8
-from dice import D6
-from dice import D4
-
-import sqlite3
 import sql
+import sys
 
 cursor = sql.get_cursor()
 sql.select_using_like(cursor, text='Python')
@@ -70,11 +62,11 @@ class enemy:
 
     def attack(self):
         print(self.name  + " attacks!")
-        newRoll = D4()
+        newRoll = dice.D4()
         if newRoll == 1:
             print(self.name + " hits!")
     def defend(self):
-        newRoll = D4()
+        newRoll = dice.D4()
         if newRoll != 1:
             print("You miss!")
 
@@ -99,13 +91,16 @@ room = "first room"
 
 def battle():
     global battleState
-    newRoll = D4()
+  
+    newRoll = dice.D4()
     if newRoll == 1:
        battleState = True
        enemy1.attack()
        command = input("Enter command:")
+       if command == "quit":
+          exit(0)
        if command == "attack":
-            newRoll = D4()
+            newRoll = dice.D4()
             enemy1.hp = enemy1.hp - 5
             print("You hit" + enemy1.name + " for 5 damage!")
             if enemy1.hp <= 0:
@@ -132,12 +127,14 @@ def first_level():
         print("You look down the well and see a lost cat.")
         first_level()
     if command == "get cat":
-       newRoll = D4() 
+       newRoll = dice.D4() 
        if newRoll == 1:
         print("You got the cat! " + profile.name + " adds cat to inventory.")
        else:
         print("You failed to get the cat.Try again")
         first_level()
+    if command == "quit":
+        exit(0)
     else:
         print("I don't understand that.")
         first_level()
@@ -151,10 +148,12 @@ def second_level():
     if room == "second room" and command == "go south":
         print("You go south to the Village Center.")
         first_level()
+    if command == "quit":
+        exit(0)
     else:
         print("I don't understand that.")
         second_level()
 
-
+ 
 #start game
 first_level()
