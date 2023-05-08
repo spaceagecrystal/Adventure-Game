@@ -24,14 +24,31 @@
 
 #character creation
 
-username = input("Enter username:")
-character = []
-print("Username is: " + username)
-character.append(username)
-job =input("Enter job:")
-character.append(job)
-print("Job is: " + job)
-print(character)
+class character:
+    def __init__(self, name, job):
+        self.name = name
+        self.job = job
+    def printname(self):
+        print(self.name)
+    def printjob(self):
+        print(self.job)
+
+
+############ class version of character creation
+
+name = input("Enter name:")
+job = input("Enter job:")
+profile = character(name, job)
+profile.printname()
+profile.printjob()
+
+########### list version of character creation
+
+#username = input("Enter username:")
+#character = []
+#print("Username is: " + username)
+#job =input("Enter job:")
+#character.append(job)
 
 #location creation
 room = "first room"
