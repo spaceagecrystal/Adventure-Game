@@ -7,8 +7,6 @@
 #need to add a way to lose the game.
 #need to add a way to save the game.
 #need to add a way to load the game.
-#need to add a way to get help.
-#need to add a way to get a list of commands.
 #need to add a way to get a list of items.
 #need to add a way to get a list of locations.
 #need to add a way to get a list of characters.
@@ -42,11 +40,6 @@ class character:
 ############ class version of character creation
 
 
-name = input("Enter name:")
-job = input("Enter job:")
-profile = character(name, job)
-profile.printname()
-profile.printjob()
 
 #class version of enemy creation
 
@@ -82,6 +75,7 @@ battleState = False
 #character.append(job)
 
 #location creation
+
 room = "first room"
 
 #game loop
@@ -90,25 +84,31 @@ room = "first room"
 
 def battle():
     global battleState
-  
     newRoll = dice.D4()
     if newRoll == 1:
        battleState = True
        enemy1.attack()
        command = input("Enter command:")
+       if command == "defend":
+           print("You defend!")
+           battle()
        if command == "quit":
           exit(0)
        if command == "attack":
             newRoll = dice.D4()
             enemy1.hp = enemy1.hp - 5
             print("You hit" + enemy1.name + " for 5 damage!")
+            print(enemy1.name + " has " + str(enemy1.hp) + " hitpoints left!")
             if enemy1.hp <= 0:
                 print(enemy1.name + " is deafeted! It runs away!")
                 battleState = False
-                first_level()
             else: 
                 battle()
 
+
+
+
+#first level
 def first_level():
     global room
     room = "first room"
@@ -129,14 +129,22 @@ def first_level():
        newRoll = dice.D4() 
        if newRoll == 1:
         print("You got the cat! " + profile.name + " adds cat to inventory.")
+        first_level()
        else:
         print("You failed to get the cat.Try again")
+        first_level()
+## maincontrols
+
+    if command == "help":
+        print("Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, quit, help")
         first_level()
     if command == "quit":
         exit(0)
     else:
         print("I don't understand that.")
         first_level()
+
+#second level
 
 def second_level():
     global room
@@ -152,7 +160,26 @@ def second_level():
     else:
         print("I don't understand that.")
         second_level()
+    ## maincontrols
+    if command == "help":
+        print("Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, quit, help")
+        second_level()
+    if command == "quit":
+        exit(0)
 
  
 #start game
-first_level()
+
+def start_game():
+    global profile
+    print("Welcome to the game!")
+    print("Type help for a list of commands.")
+    name = input("Enter name:")
+    job = input("Enter job:")
+    profile = character(name, job)
+    print("Your name is: " + profile.name)
+    print("Your job is: " + profile.job)
+    first_level()
+
+
+start_game()
