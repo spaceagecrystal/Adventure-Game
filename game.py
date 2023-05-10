@@ -6,7 +6,6 @@
 #need to add more commands and a way to win the game.
 #need to add a way to lose the game.
 #need to add a way to save the game.
-#need to add a way to load the game.
 #need to add a way to get a list of items.
 #need to add a way to get a list of locations.
 #need to add a way to get a list of characters.
@@ -15,6 +14,8 @@
 #need to add a way to get a list of weapons.
 #need to add a way to get a list of armor.
 #need to add a way to get a list of spells.
+#need to add a a way to randomly generate a monster.
+
 
 #Dice rolling system
 
