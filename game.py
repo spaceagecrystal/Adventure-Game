@@ -6,7 +6,6 @@
 #need to add more commands and a way to win the game.
 #need to add a way to lose the game.
 #need to add a way to save the game.
-#need to add a way to load the game.
 #need to add a way to get a list of items.
 #need to add a way to get a list of locations.
 #need to add a way to get a list of characters.
@@ -15,6 +14,8 @@
 #need to add a way to get a list of weapons.
 #need to add a way to get a list of armor.
 #need to add a way to get a list of spells.
+#need to add a a way to randomly generate a monster.
+
 
 #Dice rolling system
 
@@ -39,10 +40,7 @@ class character:
 
 ############ class version of character creation
 
-
-
 #class version of enemy creation
-
 
 class enemy:
     def __init__(self, hp, description, attackkNum, defense, enemyname):
@@ -100,15 +98,13 @@ def battle():
             print("You hit" + enemy1.name + " for 5 damage!")
             print(enemy1.name + " has " + str(enemy1.hp) + " hitpoints left!")
             if enemy1.hp <= 0:
-                print(enemy1.name + " is deafeted! It runs away!")
+                print(enemy1.name + " is defeated! It runs away!")
                 battleState = False
             else: 
                 battle()
 
-
-
-
 #first level
+
 def first_level():
     global room
     room = "first room"
@@ -133,7 +129,8 @@ def first_level():
        else:
         print("You failed to get the cat.Try again")
         first_level()
-## maincontrols
+
+    ## maincontrols
 
     if command == "help":
         print("Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, quit, help")
@@ -160,14 +157,15 @@ def second_level():
     else:
         print("I don't understand that.")
         second_level()
+
     ## maincontrols
+
     if command == "help":
         print("Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, quit, help")
         second_level()
     if command == "quit":
         exit(0)
 
- 
 #start game
 
 def start_game():
@@ -180,6 +178,5 @@ def start_game():
     print("Your name is: " + profile.name)
     print("Your job is: " + profile.job)
     first_level()
-
 
 start_game()
