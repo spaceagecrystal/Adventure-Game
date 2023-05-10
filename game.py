@@ -98,7 +98,7 @@ def battle():
             print("You hit" + enemy1.name + " for 5 damage!")
             print(enemy1.name + " has " + str(enemy1.hp) + " hitpoints left!")
             if enemy1.hp <= 0:
-                print(enemy1.name + " is deafeted! It runs away!")
+                print(enemy1.name + " is defeated! It runs away!")
                 battleState = False
             else: 
                 battle()
