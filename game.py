@@ -39,10 +39,7 @@ class character:
 
 ############ class version of character creation
 
-
-
 #class version of enemy creation
-
 
 class enemy:
     def __init__(self, hp, description, attackkNum, defense, enemyname):
@@ -105,10 +102,8 @@ def battle():
             else: 
                 battle()
 
-
-
-
 #first level
+
 def first_level():
     global room
     room = "first room"
@@ -133,7 +128,8 @@ def first_level():
        else:
         print("You failed to get the cat.Try again")
         first_level()
-## maincontrols
+
+    ## maincontrols
 
     if command == "help":
         print("Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, quit, help")
@@ -160,14 +156,15 @@ def second_level():
     else:
         print("I don't understand that.")
         second_level()
+
     ## maincontrols
+
     if command == "help":
         print("Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, quit, help")
         second_level()
     if command == "quit":
         exit(0)
 
- 
 #start game
 
 def start_game():
@@ -180,6 +177,5 @@ def start_game():
     print("Your name is: " + profile.name)
     print("Your job is: " + profile.job)
     first_level()
-
 
 start_game()
