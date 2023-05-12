@@ -125,9 +125,12 @@ def first_level():
        newRoll = dice.D4() 
        if newRoll == 1:
         print("You got the cat! " + profile.name + " adds cat to inventory.")
+        print("The cat purrs happily. You return the cat to its owner. The owner gives you a reward.")
+        print("You gain 10 gold!")
         first_level()
        else:
         print("You failed to get the cat.Try again")
+        print("This is difficult! But be perisistent!")
         first_level()
 
     ## maincontrols
@@ -147,7 +150,7 @@ def second_level():
     global room
     command = input("Enter command:")
     if room == "second room" and command == "look room":
-        print("You are in a cathedral. There is a path to the south.")
+        print("You are outside a cathedral. There is a path to the south. Something seems strange, as if the wind itself cried for something lost.")
         second_level()
     if room == "second room" and command == "go south":
         print("You go south to the Village Center.")
@@ -168,9 +171,10 @@ def second_level():
 
 #start game
 
-def start_game():
+def start_game():  
     global profile
-    print("Welcome to the game!")
+    print("In the land of Ravinia, you find yourself on the outskirts of the village, which sang with the openfolds of sporefloweres. As a fairy warrior, you are returning after a long journey, and you have heard that still a few Groats, ancient")
+    print("from beyond the hills. You walk thorugh the gates and into the garden city, the air is cool and peaceful.")
     print("Type help for a list of commands.")
     name = input("Enter name:")
     job = input("Enter job:")
