@@ -173,6 +173,7 @@ def second_level():
 
 def start_game():  
     global profile
+    print("Welcome to the game!")
     print("In the land of Ravinia, you find yourself on the outskirts of the village, which sang with the openfolds of sporefloweres. As a fairy warrior, you are returning after a long journey, and you have heard that still a few Groats, ancient")
     print("from beyond the hills. You walk thorugh the gates and into the garden city, the air is cool and peaceful.")
     print("Type help for a list of commands.")
