@@ -15,7 +15,7 @@
 #need to add a way to get a list of armor.
 #need to add a way to get a list of spells.
 #need to add a a way to randomly generate sa monster.
-#work on database conncection. By end of weekend
+#work on database conncection. 
 
 #Dice rolling system
 
