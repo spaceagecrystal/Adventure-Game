@@ -6,22 +6,16 @@
 #need to add more commands and a way to win the game.
 #need to add a way to lose the game.
 #need to add a way to save the game.
-#need to add a way to get a list of items.
-#need to add a way to get a list of locations.
-#need to add a way to get a list of characters.
 #need to add a way to get a list of jobs.
-#need to add a way to get a list of monsters.
 #need to add a way to get a list of weapons.
 #need to add a way to get a list of armor.
 #need to add a way to get a list of spells.
-#need to add a a way to randomly generate sa monster.
-#work on database conncection. 
-
-#Dice rolling system
+#need to add a a way to randomly generate a monster.
 
 import dice
-import sql
 import sys
+from crud_functions import mainConnect, create_connection, create_record
+
 
 #cursor = sql.get_cursor()
 #sql.select_using_like(cursor, text='Python')
@@ -173,15 +167,14 @@ def second_level():
 
 def start_game():  
     global profile
+
+    conn = create_connection()
+    conn2 = mainConnect()
     print("Welcome to the game!")
     print("In the land of Ravinia, you find yourself on the outskirts of the village, which sang with the openfolds of sporefloweres. As a fairy warrior, you are returning after a long journey, and you have heard that still a few Groats, ancient")
     print("from beyond the hills. You walk thorugh the gates and into the garden city, the air is cool and peaceful.")
     print("Type help for a list of commands.")
-    name = input("Enter name:")
-    job = input("Enter job:")
-    profile = character(name, job)
-    print("Your name is: " + profile.name)
-    print("Your job is: " + profile.job)
+
     first_level()
 
 start_game()
