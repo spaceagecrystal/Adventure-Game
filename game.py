@@ -1,16 +1,6 @@
 #initial procedural version test of a game in progress. 
 
-#needs for game:
-
-#need to expand to a class based version with a map and inventory system.
-#need to add more commands and a way to win the game.
-#need to add a way to lose the game.
-#need to add a way to save the game.
-#need to add a way to get a list of jobs.
-#need to add a way to get a list of weapons.
-#need to add a way to get a list of armor.
-#need to add a way to get a list of spells.
-#need to add a a way to randomly generate a monster.
+#needs for game: See Jira board
 
 import dice
 import sys
