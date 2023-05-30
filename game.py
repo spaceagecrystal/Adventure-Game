@@ -64,35 +64,54 @@ room = "first room"
 
 #functions
 
-def battle():
-    global battleState
+def battleTest():
     newRoll = dice.D4()
     if newRoll == 1:
-       battleState = True
-       enemy1.attack()
-       command = input("Enter command:")
-       if command == "defend":
+        battle()
+    else:
+        print("The air is gentle and the sun is shining. You are not in battle.")
+
+def battle():
+    
+    global battleState
+
+    newRoll = dice.D4()
+
+    if newRoll == 2 and battleState != True:
+
+        battleState = True
+        enemy1.attack()
+        command = input("You are in battle! Enter command:")
+       
+        if command == "defend":
+           
            print("You defend!")
            battle()
-       if command == "quit":
-          exit(0)
-       if command == "attack":
+
+        if command == "quit":
+            exit(0)
+
+        if command == "attack":
+
             newRoll = dice.D4()
             enemy1.hp = enemy1.hp - 5
             print("You hit" + enemy1.name + " for 5 damage!")
             print(enemy1.name + " has " + str(enemy1.hp) + " hitpoints left!")
-            if enemy1.hp <= 0:
+
+            if enemy1.hp <= 5:
                 print(enemy1.name + " is defeated! It runs away!")
                 battleState = False
             else: 
                 battle()
+    else:
+            first_level()
 
 #first level
 
 def first_level():
     global room
     room = "first room"
-    battle()
+    battleTest()
     command = input("Enter command:")
     if room == "first room" and command == "look room":
         print("You are in a garden village, the air is fresh and the sun is shining.")
@@ -108,7 +127,7 @@ def first_level():
     if command == "get cat":
        newRoll = dice.D4() 
        if newRoll == 1:
-        print("You got the cat! " + profile.name + " adds cat to inventory.")
+        print("You got the cat! You add cat to inventory.")
         print("The cat purrs happily. You return the cat to its owner. The owner gives you a reward.")
         print("You gain 10 gold!")
         first_level()
@@ -156,7 +175,6 @@ def second_level():
 #start game
 
 def start_game():  
-    global profile
 
     conn = create_connection()
     conn2 = mainConnect()
@@ -166,5 +184,6 @@ def start_game():
     print("Type help for a list of commands.")
 
     first_level()
+
 
 start_game()
