@@ -19,6 +19,10 @@ def D6():
 def D4():
     return random.randint(1,4)
 
+def D3():
+    return random.randint(1,3)
+
+
 newRoll = D20()
 
 

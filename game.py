@@ -1,25 +1,70 @@
-#This is a text based game.
-
 import dice
 import sys
 from crud_functions import mainConnect, create_connection, create_record
 
+# Random Enemy Generator
 
-#character creation
+import random
+
+monster1 = {
+    "enemyID": 1,
+    "name": "Dragon",
+    "hp": 5,
+    "description": "A mighty creature with scales and the ability to breathe fire.",
+}
+
+monster2 = {
+    "enemyID": 2,
+    "name": "Werewolf",
+    "hp": 5,
+    "description": "A fearsome beast with the ability to transform between human and wolf forms.",
+}
+
+monster3 = {
+    "enemyID": 3,
+    "name": "Siren",
+    "hp": 5,
+    "description": "A seductive creature that lures sailors to their doom with enchanting songs.",
+}
+
+monster4 = {
+    "enemyID": 4,
+    "name": "Banshee",
+    "hp": 5,
+    "description": "A small, green creature with a scarf that talks in an unknown language. What does it say? It doesn't matter. It attacks!",
+}
+
+monsters = [monster1, monster2, monster3, monster4]
+
+for monster in monsters:
+    print(monster)
+    print("-----------------------")
+
+
+def randomEnemy():
+    newRoll = random.randint(0, len(monsters) - 1)
+    print("You encounter a " + monsters[newRoll]["name"] + ". It disdainfully attacks you!")
+
+
+# Character creation
+atFirst = True
+
 
 class character:
     hitpoints = 10
+
     def __init__(self, name, job):
         self.name = name
         self.job = job
+
     def printname(self):
         print(self.name)
+
     def printjob(self):
         print(self.job)
 
 
-#class version of enemy creation
-
+# Class version of enemy creation
 class enemy:
     def __init__(self, hp, description, attackkNum, defense, enemyname):
         self.hp = hp
@@ -29,35 +74,26 @@ class enemy:
         self.defense = defense
 
     def attack(self):
-        print(self.name  + " attacks!")
+        print(self.name + " attacks!")
         newRoll = dice.D4()
         if newRoll == 1:
             print(self.name + " hits!")
+
     def defend(self):
         newRoll = dice.D4()
         if newRoll != 1:
             print("You miss!")
 
-enemy1 = enemy(10, "Groat,a small rat", 1, 1, "Groat")
+
+print(enemy)
 
 battleState = False
 
-########### list version of character creation
-
-#username = input("Enter username:")
-#character = []
-#print("Username is: " + username)
-#job =input("Enter job:")
-#character.append(job)
-
-#location creation
-
+# Location creation
 room = "first room"
 
-#game loop
 
-#functions
-
+# Game loop
 def battleTest():
     newRoll = dice.D4()
     if newRoll == 1:
@@ -65,43 +101,47 @@ def battleTest():
     else:
         print("The air is gentle and the sun is shining. You are not in battle.")
 
+
 def battle():
-    
     global battleState
+    global atFirst
 
-    newRoll = dice.D4()
-
-    if newRoll == 2 and battleState != True:
-
+    if atFirst == True:
+        newRoll = random.randint(0, len(monsters) - 1)
+        print("You encounter a " + monsters[newRoll]["name"] + ".")
         battleState = True
-        enemy1.attack()
+    else:
+        print("Oh my god what now, you think. You are in battle again!")
+
+    if battleState == True:
         command = input("You are in battle! Enter command:")
-       
+
         if command == "defend":
-           
-           print("You defend!")
-           battle()
+            print("You defend!")
+            battle()
 
         if command == "quit":
             exit(0)
 
         if command == "attack":
-
             newRoll = dice.D4()
-            enemy1.hp = enemy1.hp - 5
-            print("You hit" + enemy1.name + " for 5 damage!")
-            print(enemy1.name + " has " + str(enemy1.hp) + " hitpoints left!")
+            monster = monsters[newRoll]
+            monster["hp"] -= 5
+            print("You hit " + monster["name"] + " for 5 damage!")
+            print(monster["name"] + " has " + str(monster["hp"]) + " hitpoints left!")
 
-            if enemy1.hp <= 5:
-                print(enemy1.name + " is defeated! It runs away!")
+            if monster["hp"] <= 0:
+                print(monster["name"] + " is defeated! It runs away!")
                 battleState = False
-            else: 
+                atFirst = True
+            else:
+                atFirst = False
                 battle()
     else:
-            first_level()
+        first_level()
 
-#first level
 
+# First level
 def first_level():
     global room
     room = "first room"
@@ -119,21 +159,22 @@ def first_level():
         print("You look down the well and see a lost cat.")
         first_level()
     if command == "get cat":
-       newRoll = dice.D4() 
-       if newRoll == 1:
-        print("You got the cat! You add cat to inventory.")
-        print("The cat purrs happily. You return the cat to its owner. The owner gives you a reward.")
-        print("You gain 10 gold!")
-        first_level()
-       else:
-        print("You failed to get the cat.Try again")
-        print("This is difficult! But be perisistent!")
-        first_level()
+        newRoll = dice.D4()
+        if newRoll == 1:
+            print("You got the cat! You add cat to inventory.")
+            print("The cat purrs happily. You return the cat to its owner. The owner gives you a reward.")
+            print("You gain 10 gold!")
+            first_level()
+        else:
+            print("You failed to get the cat. Try again")
+            print("This is difficult! But be persistent!")
+            first_level()
 
-    ## maincontrols
-
+    # Main controls
     if command == "help":
-        print("Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, quit, help")
+        print(
+            "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, quit, help"
+        )
         first_level()
     if command == "quit":
         exit(0)
@@ -141,8 +182,8 @@ def first_level():
         print("I don't understand that.")
         first_level()
 
-#second level
 
+# Second level
 def second_level():
     global room
     command = input("Enter command:")
@@ -158,25 +199,28 @@ def second_level():
         print("I don't understand that.")
         second_level()
 
-    ## maincontrols
-
+    # Main controls
     if command == "help":
-        print("Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, quit, help")
+        print(
+            "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, quit, help"
+        )
         second_level()
     if command == "quit":
         exit(0)
 
-#start game
 
-def start_game():  
-
+# Start game
+def start_game():
     conn = create_connection()
     conn2 = mainConnect()
     print("Welcome to the game!")
-    print("In the land of Ravinia, you find yourself on the outskirts of the village, which sang with the openfolds of sporefloweres. As a fairy warrior, you are returning after a long journey, and you have heard that still a few Groats, ancient")
-    print("from beyond the hills. You walk thorugh the gates and into the garden city, the air is cool and peaceful.")
+    print(
+        "In the land of Ravinia, you find yourself on the outskirts of the village, which sang with the open folds of spore flowers. As a fairy warrior, you are returning after a long journey, and you have heard that still a few Groats, ancient"
+    )
+    print(
+        "from beyond the hills. You walk through the gates and into the garden city, the air is cool and peaceful."
+    )
     print("Type help for a list of commands.")
-
     first_level()
 
 
