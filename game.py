@@ -1,14 +1,9 @@
-#initial procedural version test of a game in progress. 
-
-#needs for game: See Jira board
+#This is a text based game.
 
 import dice
 import sys
 from crud_functions import mainConnect, create_connection, create_record
 
-
-#cursor = sql.get_cursor()
-#sql.select_using_like(cursor, text='Python')
 
 #character creation
 
@@ -22,7 +17,6 @@ class character:
     def printjob(self):
         print(self.job)
 
-############ class version of character creation
 
 #class version of enemy creation
 
