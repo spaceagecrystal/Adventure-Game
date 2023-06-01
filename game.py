@@ -8,30 +8,29 @@ import random
 
 monster1 = {
     "enemyID": 1,
-    "name": "Dragon",
+    "name": "Silver Armored Albolor",
     "hp": 5,
-    "description": "A mighty creature with scales and the ability to breathe fire.",
+    "description": "A mighty creature with scales and the ability to bore with didactic lectures.",
 }
 
 monster2 = {
     "enemyID": 2,
-    "name": "Werewolf",
+    "name": "Golowrath",
     "hp": 5,
-    "description": "A fearsome beast with the ability to transform between human and wolf forms.",
+    "description": "A fearsome beast with the ability to fly and breathe ice.",
 }
-
 monster3 = {
     "enemyID": 3,
-    "name": "Siren",
+    "name": "Hydra of the Deep",
     "hp": 5,
-    "description": "A seductive creature that lures sailors to their doom with enchanting songs.",
+    "description": "A seductive creature that is made of slime and has many heads.",
 }
 
 monster4 = {
     "enemyID": 4,
-    "name": "Banshee",
+    "name": "Demon of the Ghost of a Lost Cat",
     "hp": 5,
-    "description": "A small, green creature with a scarf that talks in an unknown language. What does it say? It doesn't matter. It attacks!",
+    "description": "Legend has it that every cat that is lost becomes a demon for all eternity.",
 }
 
 monsters = [monster1, monster2, monster3, monster4]
@@ -108,13 +107,13 @@ def battle():
 
     if atFirst == True:
         newRoll = random.randint(0, len(monsters) - 1)
-        print("You encounter a " + monsters[newRoll]["name"] + ".")
+        monsterName = monsters[newRoll]["name"]
+        print("You encounter a " + monsterName + ".")
         battleState = True
-    else:
         print("Oh my god what now, you think. You are in battle again!")
 
     if battleState == True:
-        command = input("You are in battle! Enter command:")
+        command = input("You are in battle! Enter attack or defend:")
 
         if command == "defend":
             print("You defend!")
@@ -127,11 +126,11 @@ def battle():
             newRoll = dice.D4()
             monster = monsters[newRoll]
             monster["hp"] -= 5
-            print("You hit " + monster["name"] + " for 5 damage!")
-            print(monster["name"] + " has " + str(monster["hp"]) + " hitpoints left!")
+            print("You hit " + monsterName + " for 5 damage!")
+            print(monsterName+ " has " + str(monster["hp"]) + " hitpoints left!")
 
             if monster["hp"] <= 0:
-                print(monster["name"] + " is defeated! It runs away!")
+                print(monsterName + " is defeated! It runs away!")
                 battleState = False
                 atFirst = True
             else:
