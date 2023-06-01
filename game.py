@@ -1,10 +1,42 @@
 import dice
 import sys
 from crud_functions import mainConnect, create_connection, create_record
-
-# Random Enemy Generator
-
 import random
+import sqlite3
+
+#inventory functions
+
+def display_inventory():
+    # Connect to the database
+    conn = sqlite3.connect("gamedata.db")
+    cursor = conn.cursor()
+
+    # Execute the query
+    cursor.execute("SELECT * FROM Inventory WHERE in_inventory >= 1")
+
+    # Fetch all the rows
+    rows = cursor.fetchall()
+
+    # Iterate through the rows and print the desired columns
+    for row in rows:
+        item_id, name, attack_level, item_type, description, in_inventory = row
+        print(f"Item ID: {item_id}")
+        print(f"Name: {name}")
+        print(f"Attack Level: {attack_level}")
+        print(f"Type: {item_type}")
+        print(f"Description: {description}")
+        print(f"In Inventory: {in_inventory}")
+        print("-----------------------")
+
+    # Close the cursor and connection
+    cursor.close()
+    conn.close()
+
+# Example usage
+
+display_inventory()
+
+
 
 monster1 = {
     "enemyID": 1,
@@ -170,11 +202,16 @@ def first_level():
             first_level()
 
     # Main controls
+    if command == "inventory":
+        display_inventory()
+        first_level()
+
     if command == "help":
         print(
             "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, quit, help"
         )
         first_level()
+
     if command == "quit":
         exit(0)
     else:
