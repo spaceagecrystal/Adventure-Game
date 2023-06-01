@@ -30,15 +30,22 @@ def create_table(conn):
         print(e)
 
 # Insert a new record
-def create_record(conn, username, email, name, namelast, job):
-    try:
-        cursor = conn.cursor()
-        cursor.execute("INSERT INTO users (username, email, name, namelast, job) VALUES (?, ?, ?, ?, ?)",
-                       (username, email, name, namelast, job))
-        conn.commit()
-        print("Record created successfully")
-    except sqlite3.Error as e:
-        print(e)
+def create_record(conn, table_name, **kwargs):
+    cursor = conn.cursor()
+
+    # Generate the SQL statement
+    columns = ", ".join(kwargs.keys())
+    placeholders = ":" + ", :".join(kwargs.keys())
+    sql = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})"
+
+    # Execute the query with the provided values
+    cursor.execute(sql, kwargs)
+
+    # Commit the changes
+    conn.commit()
+
+    # Close the cursor
+    cursor.close()
 
 # Read all records
 def read_records(conn):
@@ -80,16 +87,21 @@ def mainConnect():
     choice = "1"
 
     if choice == '1':
-            username = input("Enter username: ")
-            email = input("Enter email: ")
-            name = input("Enter name: ")
-            namelast = input("Enter last name: ")
-            job = input("Enter job: ")
-            create_record(conn, username, email, name, namelast, job)
+        username = input("Enter username: ")
+        email = input("Enter email: ")
+        name = input("Enter name: ")
+        namelast = input("Enter last name: ")
+        job = input("Enter job: ")
+        create_record(conn, "users", username=username, email=email, name=name, namelast=namelast, job=job)
     elif choice == '2':
-            read_records(conn)
+        read_records(conn)
     elif choice == '3':
-            record_id = int(input("Enter ID of the record to update: "))
-            username = input("Enter new username: ")
-            email = input("Enter new email: ")
-            name = input("Enter new name:")
+        record_id = int(input("Enter ID of the record to update: "))
+        username = input("Enter new username: ")
+        email = input("Enter new email: ")
+        name = input("Enter new name:")
+        namelast = input("Enter new last name:")
+        job = input("Enter new job:")
+        update_record(conn, record_id, username, email, name, namelast, job)
+
+mainConnect()
