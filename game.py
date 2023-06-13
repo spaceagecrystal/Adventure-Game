@@ -3,6 +3,9 @@ import sys
 import random
 import sqlite3
 
+#####NOTE: This is a work in progress. I am currently working on the database and inventory system.#####
+##### Need to update and debug th battle system. #####
+
 # Connect to the SQLite database
 def create_connection():
     conn = None
@@ -77,9 +80,9 @@ def mainConnect():
 
     if choice == '1':
         username = input("Enter username: ")
-        email = input("Enter email: ")
-        name = input("Enter name: ")
-        namelast = input("Enter last name: ")
+        email = "ignore"
+        name = "ignore"
+        namelast = "ignore"
         job = input("Enter job: ")
         create_record(conn, "users", username=username, email=email, name=name, namelast=namelast, job=job)
     elif choice == '2':
@@ -214,7 +217,7 @@ def battle():
     if atFirst:
         newRoll = random.randint(0, len(monsters) - 1)
         monsterName = monsters[newRoll]["name"]
-        print("You encounter a " + monsterName + ".")
+        print("You are attacked by a " + monsterName + ".")
         battleState = True
         print("Oh my god what now, you think. You are in battle again!")
 
