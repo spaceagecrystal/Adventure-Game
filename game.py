@@ -171,8 +171,12 @@ monsters = [monster1, monster2, monster3, monster4]
 
 
 def randomEnemy():
-    newRoll = random.randint(0, len(monsters) - 1)
-    return newRoll
+    if monsters:
+        newRoll = random.randint(0, len(monsters) - 1)
+        return newRoll
+    else:
+        print("No monsters available.")
+        return None
 
 
 # Character creation
@@ -232,10 +236,12 @@ def battleTest():
 def battle():
     global battleState
     global atFirst
+    global monsters  # Add this line to access the monsters list
 
     if atFirst:
         newRoll = randomEnemy()
-        monsterName = monsters[newRoll]["name"]
+        monster = monsters[newRoll]
+        monsterName = monster["name"]
         print("You are attacked by a " + monsterName + ".")
         battleState = True
         print("Oh my god what now, you think. You are in battle again!")
@@ -251,8 +257,6 @@ def battle():
             sys.exit(0)
 
         elif command == "attack":
-            newRoll = dice.D4()
-            monster = monsters[newRoll]
             monsterName = monster["name"]
             monster["hp"] -= 5
             print("You hit " + monsterName + " for 5 damage!")
