@@ -87,17 +87,11 @@ def mainConnect():
 
     if choice == "1":
         username = input("Enter username: ")
-        email = "ignore"
-        name = "ignore"
-        namelast = "ignore"
-        job = input("Enter job: ")
+        job = input("Are you a Warrior, Mage, Healer, or Palladin:  ")
         create_record(
             conn,
             "users",
             username=username,
-            email=email,
-            name=name,
-            namelast=namelast,
             job=job,
         )
     elif choice == "2":
@@ -105,18 +99,12 @@ def mainConnect():
     elif choice == "3":
         record_id = int(input("Enter ID of the record to update: "))
         username = input("Enter new username: ")
-        email = input("Enter new email: ")
-        name = input("Enter new name: ")
-        namelast = input("Enter new last name: ")
         job = input("Enter new job: ")
         update_record(
             conn,
             "users",
             record_id,
             username=username,
-            email=email,
-            name=name,
-            namelast=namelast,
             job=job,
         )
 
