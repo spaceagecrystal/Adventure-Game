@@ -4,23 +4,26 @@ import random
 import sqlite3
 
 #####NOTE: This is a work in progress. I am currently working on the database and inventory system.#####
-##### Need to update and debug th battle system. #####
+##### Need to update and debug the battle system. #####
+
 
 # Connect to the SQLite database
 def create_connection():
     conn = None
     try:
-        conn = sqlite3.connect('gamedata.db')
+        conn = sqlite3.connect("gamedata.db")
         print("Connected to SQLite database")
     except sqlite3.Error as e:
         print(e)
     return conn
 
+
 # Create a table
 def create_table(conn):
     try:
         cursor = conn.cursor()
-        cursor.execute('''
+        cursor.execute(
+            """
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 username TEXT NOT NULL,
@@ -29,11 +32,13 @@ def create_table(conn):
                 namelast TEXT NOT NULL,
                 job TEXT
             )
-        ''')
+        """
+        )
         conn.commit()
         print("Table created successfully")
     except sqlite3.Error as e:
         print(e)
+
 
 # Insert a new record
 def create_record(conn, table_name, **kwargs):
@@ -53,6 +58,7 @@ def create_record(conn, table_name, **kwargs):
     # Close the cursor
     cursor.close()
 
+
 # Update a record
 def update_record(conn, table_name, record_id, **kwargs):
     cursor = conn.cursor()
@@ -71,6 +77,7 @@ def update_record(conn, table_name, record_id, **kwargs):
     # Close the cursor
     cursor.close()
 
+
 # Main function to demonstrate the usage
 def mainConnect():
     conn = create_connection()
@@ -78,25 +85,43 @@ def mainConnect():
 
     choice = "1"
 
-    if choice == '1':
+    if choice == "1":
         username = input("Enter username: ")
         email = "ignore"
         name = "ignore"
         namelast = "ignore"
         job = input("Enter job: ")
-        create_record(conn, "users", username=username, email=email, name=name, namelast=namelast, job=job)
-    elif choice == '2':
+        create_record(
+            conn,
+            "users",
+            username=username,
+            email=email,
+            name=name,
+            namelast=namelast,
+            job=job,
+        )
+    elif choice == "2":
         read_records(conn)
-    elif choice == '3':
+    elif choice == "3":
         record_id = int(input("Enter ID of the record to update: "))
         username = input("Enter new username: ")
         email = input("Enter new email: ")
         name = input("Enter new name: ")
         namelast = input("Enter new last name: ")
         job = input("Enter new job: ")
-        update_record(conn, "users", record_id, username=username, email=email, name=name, namelast=namelast, job=job)
+        update_record(
+            conn,
+            "users",
+            record_id,
+            username=username,
+            email=email,
+            name=name,
+            namelast=namelast,
+            job=job,
+        )
 
     return conn
+
 
 # Inventory functions
 def display_inventory():
@@ -124,6 +149,7 @@ def display_inventory():
     # Close the cursor and connection
     cursor.close()
     conn.close()
+
 
 # Example usage
 monster1 = {
@@ -155,14 +181,15 @@ monster4 = {
 
 monsters = [monster1, monster2, monster3, monster4]
 
+
 def randomEnemy():
     newRoll = random.randint(0, len(monsters) - 1)
-    if newRoll >= len(monsters):
-        newRoll = len(monsters) - 1
-    print("You encounter a " + monsters[newRoll]["name"] + ". It disdainfully attacks you!")
+    return newRoll
+
 
 # Character creation
 atFirst = True
+
 
 class Character:
     hitpoints = 10
@@ -176,6 +203,7 @@ class Character:
 
     def printjob(self):
         print(self.job)
+
 
 # Class version of enemy creation
 class Enemy:
@@ -197,10 +225,12 @@ class Enemy:
         if newRoll != 1:
             print("You miss!")
 
+
 battleState = False
 
 # Location creation
 room = "first room"
+
 
 # Game loop
 def battleTest():
@@ -210,12 +240,13 @@ def battleTest():
     else:
         print("The air is gentle and the sun is shining. You are not in battle.")
 
+
 def battle():
     global battleState
     global atFirst
 
     if atFirst:
-        newRoll = random.randint(0, len(monsters) - 1)
+        newRoll = randomEnemy()
         monsterName = monsters[newRoll]["name"]
         print("You are attacked by a " + monsterName + ".")
         battleState = True
@@ -249,6 +280,7 @@ def battle():
     else:
         first_level()
 
+
 # First level
 def first_level():
     global room
@@ -258,7 +290,9 @@ def first_level():
 
     if room == "first room" and command == "look room":
         print("You are in a garden village, the air is fresh and the sun is shining.")
-        print("There is a well in the middle of the village. There is a path to the north.")
+        print(
+            "There is a well in the middle of the village. There is a path to the north."
+        )
         first_level()
 
     elif room == "first room" and command == "go north":
@@ -274,7 +308,9 @@ def first_level():
         newRoll = dice.D4()
         if newRoll == 1:
             print("You got the cat! You add cat to inventory.")
-            print("The cat purrs happily. You return the cat to its owner. The owner gives you a reward.")
+            print(
+                "The cat purrs happily. You return the cat to its owner. The owner gives you a reward."
+            )
             print("You gain 10 gold!")
 
             # Update the item ID in the database
@@ -304,13 +340,16 @@ def first_level():
         print("I don't understand that.")
         first_level()
 
+
 # Second level
 def second_level():
     global room
     command = input("Enter command:")
 
     if room == "second room" and command == "look room":
-        print("You are outside a cathedral. There is a path to the south. Something seems strange, as if the wind itself cried for something lost.")
+        print(
+            "You are outside a cathedral. There is a path to the south. Something seems strange, as if the wind itself cried for something lost."
+        )
         second_level()
 
     elif room == "second room" and command == "go south":
@@ -322,7 +361,9 @@ def second_level():
 
         # Create a savepoint in the database
         conn = create_connection()
-        create_record(conn, "savepoint", location="cathedral", quest="finding the lost cat")
+        create_record(
+            conn, "savepoint", location="cathedral", quest="finding the lost cat"
+        )
 
         second_level()
 
@@ -342,6 +383,7 @@ def second_level():
     elif command == "quit":
         sys.exit(0)
 
+
 # Start game
 def start_game():
     conn = mainConnect()
@@ -354,5 +396,6 @@ def start_game():
     )
     print("Type help for a list of commands.")
     first_level()
+
 
 start_game()
