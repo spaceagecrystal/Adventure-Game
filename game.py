@@ -306,8 +306,8 @@ def first_level():
             print("You gain 10 gold!")
 
             # Update the item ID in the database
-            item_id_to_update = 1  # ID of the cat item in the Inventory table
-            update_record(conn, "Inventory", item_id_to_update, in_inventory=1)
+            ##item_id_to_update = 1  # ID of the cat item in the Inventory table
+            ##update_record(conn, "Inventory", item_id_to_update, in_inventory=1)
 
             first_level()
         else:
