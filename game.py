@@ -4,7 +4,6 @@ import random
 import sqlite3
 
 #####NOTE: This is a work in progress. I am currently working on the database and inventory system.#####
-##### Need to update and debug the battle system. #####
 ##### Add ability to look at monsters #####
 ### reset hp after battle ###
 
