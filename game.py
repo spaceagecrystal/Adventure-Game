@@ -3,7 +3,7 @@ import sys
 import random
 import sqlite3
 
-#####NOTE: This is a work in progress. I am currently working on the database and inventory system.#####
+#####: This is a work in progress. I am currently working on the database and inventory system.#####
 ##### Add ability to look at monsters #####
 ### reset hp after battle ###
 
@@ -365,7 +365,7 @@ def second_level():
         sys.exit(0)
 
     else:
-        print("I don't understand that.")
+        print("I'm sorry, I don't understand that.")
         second_level()
 
     # Main controls
@@ -381,7 +381,7 @@ def second_level():
 # Start game
 def start_game():
     conn = mainConnect()
-    print("Welcome to the game!")
+    print("Welcome to the Ravinia!")
     print(
         "In the land of Ravinia, you find yourself on the outskirts of the village, which sang with the open folds of spore flowers. As a fairy warrior, you are returning after a long journey, and you have heard that still a few Groats, ancient"
     )
