@@ -342,14 +342,19 @@ def second_level():
 
     if room == "second room" and command == "look room":
         print(
-            "You are outside a cathedral. There is a path to the south. Something seems strange, as if the wind itself cried for something lost."
+            "You are outside a cathedral. There is a path to the south and east. Something seems strange, as if the wind itself cried for something lost."
         )
         second_level()
 
     elif room == "second room" and command == "go south":
         print("You go south to the Village Center.")
         first_level()
-
+    
+    elif room == "second room" and command == "go east":
+        print("You go east to the base of a mountain")
+        room = "third room"
+        third_level()
+    
     elif room == "second room" and command == "rest":
         print("You rest at the cathedral.")
 
@@ -374,6 +379,54 @@ def second_level():
             "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, rest, quit, help"
         )
         second_level()
+    elif command == "quit":
+        sys.exit(0)
+
+# Third Level
+def third_level():
+    global room
+    command = input("Enter command:")
+
+    if room == "third room" and command == "look room":
+        print(
+            "At the base of a mountainside, a small river flows throughout an ancient castle ruin."
+        )
+        third_level()
+    
+    elif room == "third room" and command == "go west":
+        print("You go west to the cathedral.")        
+        room = "second room"
+        second_level()
+
+    elif room == "third room" and command == "look ruins":
+        print("You see something bright and shimmering ammidst the broken forms.")
+        third_level()
+
+    elif room == "third room" and command == "save game":
+        print("Yous save the game.")
+
+        # Create a savepoint in the database
+        conn = create_connection()
+        create_record(
+            conn, "savepoint", location="mountain", quest="The shiny object"
+        )
+
+        third_level()
+
+    elif command == "quit":
+        sys.exit(0)
+
+    else:
+        print("I'm sorry, I don't understand that.")
+        third_level()
+
+    # Main controls
+    if command == "help":
+        print(
+            "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, rest, quit, help"
+        )
+        third_level()
+    
     elif command == "quit":
         sys.exit(0)
 
