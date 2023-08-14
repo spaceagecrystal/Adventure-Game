@@ -2,6 +2,7 @@ import dice
 import sys
 import random
 import sqlite3
+import os
 
 #####: This is a work in progress. I am currently working on the database and inventory system.#####
 ##### Add ability to look at monsters #####
@@ -235,7 +236,7 @@ def battle():
             print("You defend!")
             battle()
 
-        elif command == "quit":
+        elif command == "exit":
             sys.exit(0)
 
         elif command == "attack":
@@ -303,11 +304,11 @@ def first_level():
 
     elif command == "help":
         print(
-            "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, quit, help"
+            "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, exit, help"
         )
         first_level()
 
-    elif command == "quit":
+    elif command == "exit":
         sys.exit(0)
 
     elif room == "first room" and command == "save game":
@@ -344,7 +345,7 @@ def second_level():
         saveGame("cathedral")
         second_level()
 
-    elif command == "quit":
+    elif command == "exit":
         sys.exit(0)
 
     else:
@@ -354,10 +355,10 @@ def second_level():
     # Main controls
     if command == "help":
         print(
-            "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, rest, quit, help"
+            "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, rest, exit, help"
         )
         second_level()
-    elif command == "quit":
+    elif command == "exit":
         sys.exit(0)
 
 # Third Level
@@ -385,7 +386,7 @@ def third_level():
         saveGame("mountain")
         third_level()
 
-    elif command == "quit":
+    elif command == "exit":
         sys.exit(0)
 
     else:
@@ -395,11 +396,11 @@ def third_level():
     # Main controls
     if command == "help":
         print(
-            "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, rest, quit, help"
+            "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, rest, exit, help"
         )
         third_level()
     
-    elif command == "quit":
+    elif command == "exit":
         sys.exit(0)
 
 
@@ -419,7 +420,7 @@ def load_game():
     connection = sqlite3.connect('gamedata.db')
     cursor = connection.cursor()
     print("Table created successfully")
-    cursor.execute('SELECT location FROM savepoint ORDER BY number_save DESC LIMIT 1')
+    cursor.execute('SELECT location FROM savepoint ORDER BY numberSave DESC LIMIT 1')
     location = cursor.fetchone()
     if location:
         print("Looks like the last place you were was " + location[0] + " taking you there now.")
@@ -446,12 +447,14 @@ def saveGame(saveGameLoc):
         conn = create_connection()
         cursor = conn.cursor()
 
-        cursor.execute('SELECT number_save FROM savepoint ORDER BY number_save DESC LIMIT 1')
+        cursor.execute('SELECT numberSave FROM savepoint ORDER BY numberSave DESC LIMIT 1')
         lastSaved  = cursor.fetchone()
         create_record(
-            conn, "savepoint", location=saveGameLoc, quest="The shiny object", number_save=lastSaved[0]+1
+            conn, "savepoint", location=saveGameLoc, quest="The shiny object", numberSave=lastSaved[0]+1
         )
 
+
+          
 start_game()
 load_game()
 conn = create_connection()
@@ -461,5 +464,6 @@ cursor.execute('''
             CREATE TABLE IF NOT EXISTS savepoint (
                 location TEXT,
                 quest TEXT,
-                number_save INTEGER)
+                numberSave INTEGER)
         ''')
+        
