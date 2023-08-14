@@ -358,11 +358,8 @@ def second_level():
     elif room == "second room" and command == "rest":
         print("You rest at the cathedral.")
 
-        # Create a savepoint in the database
-        conn = create_connection()
-        create_record(
-            conn, "savepoint", location="cathedral", quest="finding the lost cat"
-        )
+        saveGame("cathedral")
+
 
         second_level()
 
@@ -405,12 +402,7 @@ def third_level():
     elif room == "third room" and command == "save game":
         print("You save the game.")
 
-        # Create a savepoint in the database
-        conn = create_connection()
-        create_record(
-            conn, "savepoint", location="mountain", quest="The shiny object"
-        )
-
+        saveGame("mountain")
         third_level()
 
     elif command == "quit":
@@ -468,6 +460,16 @@ def load_game():
             first_level()
 
     connection.close()
+
+def saveGame(saveGameLoc):
+        conn = create_connection()
+        cursor = conn.cursor()
+
+        cursor.execute('SELECT number_save FROM savepoint ORDER BY number_save DESC LIMIT 1')
+        lastSaved  = cursor.fetchone()
+        create_record(
+            conn, "savepoint", location=saveGameLoc, quest="The shiny object", number_save=lastSaved[0]+1
+        )
 
 start_game()
 load_game()
