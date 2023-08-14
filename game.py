@@ -14,7 +14,6 @@ def create_connection():
     conn = None
     try:
         conn = sqlite3.connect("gamedata.db")
-        print("Connected to SQLite database")
     except sqlite3.Error as e:
         print(e)
     return conn
@@ -330,6 +329,10 @@ def first_level():
     elif command == "quit":
         sys.exit(0)
 
+    elif room == "first room" and command == "save game":
+        print("You save the game.")
+        saveGame("town")
+
     else:
         print("I don't understand that.")
         first_level()
@@ -355,12 +358,9 @@ def second_level():
         room = "third room"
         third_level()
     
-    elif room == "second room" and command == "rest":
-        print("You rest at the cathedral.")
-
+    elif room == "second room" and command == "save game":
+        print("You save the game.")
         saveGame("cathedral")
-
-
         second_level()
 
     elif command == "quit":
@@ -401,7 +401,6 @@ def third_level():
 
     elif room == "third room" and command == "save game":
         print("You save the game.")
-
         saveGame("mountain")
         third_level()
 
@@ -452,6 +451,7 @@ def load_game():
             print("you go to the mountain.")
 
             room = "third room"
+
             third_level()
 
         else:
