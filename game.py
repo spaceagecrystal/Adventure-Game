@@ -7,7 +7,7 @@ import sqlite3
 ##### Add ability to look at monsters #####
 ### reset hp after battle ###
 
-
+global room
 
 # Connect to the SQLite database
 def create_connection():
@@ -337,7 +337,7 @@ def first_level():
 
 # Second level
 def second_level():
-    global room
+    room = "second room"
     command = input("Enter command:")
 
     if room == "second room" and command == "look room":
@@ -384,7 +384,7 @@ def second_level():
 
 # Third Level
 def third_level():
-    global room
+    room = "third room"
     command = input("Enter command:")
 
     if room == "third room" and command == "look room":
@@ -403,7 +403,7 @@ def third_level():
         third_level()
 
     elif room == "third room" and command == "save game":
-        print("Yous save the game.")
+        print("You save the game.")
 
         # Create a savepoint in the database
         conn = create_connection()
@@ -442,7 +442,32 @@ def start_game():
         "from beyond the hills. You walk through the gates and into the garden city, the air is cool and peaceful."
     )
     print("Type help for a list of commands.")
-    first_level()
 
+def load_game():
+    connection = sqlite3.connect('gamedata.db')
+    cursor = connection.cursor()
+
+    cursor.execute('SELECT location FROM savepoint ORDER BY location DESC LIMIT 1')
+    location = cursor.fetchone()
+    if location:
+        print("Looks like the last place you were was " + location[0] + " taking you there now.")
+
+        if location[0] == "cathedral":
+            print("you go to the cathedral.")
+            second_level()
+
+        elif location[0] == "mountain":
+            print("you go to the mountain.")
+
+            room = "third room"
+            third_level()
+
+        else:
+            print("you go to the city center.")
+
+            first_level()
+
+    connection.close()
 
 start_game()
+load_game()
