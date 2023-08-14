@@ -28,15 +28,13 @@ def create_table(conn):
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 username TEXT NOT NULL,
-                email TEXT NOT NULL,
-                name TEXT NOT NULL,
-                namelast TEXT NOT NULL,
                 job TEXT
             )
         """
         )
         conn.commit()
         print("Table created successfully")
+
     except sqlite3.Error as e:
         print(e)
 
@@ -49,10 +47,8 @@ def create_record(conn, table_name, **kwargs):
     columns = ", ".join(kwargs.keys())
     placeholders = ":" + ", :".join(kwargs.keys())
     sql = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})"
-
     # Execute the query with the provided values
     cursor.execute(sql, kwargs)
-
     # Commit the changes
     conn.commit()
 
@@ -422,7 +418,7 @@ def start_game():
 def load_game():
     connection = sqlite3.connect('gamedata.db')
     cursor = connection.cursor()
-
+    print("Table created successfully")
     cursor.execute('SELECT location FROM savepoint ORDER BY number_save DESC LIMIT 1')
     location = cursor.fetchone()
     if location:
@@ -458,3 +454,12 @@ def saveGame(saveGameLoc):
 
 start_game()
 load_game()
+conn = create_connection()
+
+cursor = conn.cursor()
+cursor.execute('''
+            CREATE TABLE IF NOT EXISTS savepoint (
+                location TEXT,
+                quest TEXT,
+                number_save INTEGER)
+        ''')
