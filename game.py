@@ -447,7 +447,7 @@ def load_game():
     connection = sqlite3.connect('gamedata.db')
     cursor = connection.cursor()
 
-    cursor.execute('SELECT location FROM savepoint ORDER BY location DESC LIMIT 1')
+    cursor.execute('SELECT location FROM savepoint ORDER BY number_save DESC LIMIT 1')
     location = cursor.fetchone()
     if location:
         print("Looks like the last place you were was " + location[0] + " taking you there now.")
