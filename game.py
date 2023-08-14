@@ -59,7 +59,6 @@ def create_record(conn, table_name, **kwargs):
     # Close the cursor
     cursor.close()
 
-
 # Update a record
 def update_record(conn, table_name, record_id, **kwargs):
     cursor = conn.cursor()
@@ -78,7 +77,6 @@ def update_record(conn, table_name, record_id, **kwargs):
     # Close the cursor
     cursor.close()
 
-
 # Main function to demonstrate the usage
 def mainConnect():
     conn = create_connection()
@@ -92,19 +90,6 @@ def mainConnect():
         create_record(
             conn,
             "users",
-            username=username,
-            job=job,
-        )
-    elif choice == "2":
-        read_records(conn)
-    elif choice == "3":
-        record_id = int(input("Enter ID of the record to update: "))
-        username = input("Enter new username: ")
-        job = input("Enter new job: ")
-        update_record(
-            conn,
-            "users",
-            record_id,
             username=username,
             job=job,
         )
