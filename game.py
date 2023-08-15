@@ -2,11 +2,28 @@ import dice
 import sys
 import random
 import sqlite3
-import os
 
 #####: This is a work in progress. I am currently working on the database and inventory system.#####
 ##### Add ability to look at monsters #####
-### reset hp after battle ###
+##### Add ability to look at inventory #####
+##### Add ability to look at character #####
+##### Add ability to look at location #####
+##### Add ability to look at map #####
+##### Add ability to look at quests #####
+##### Add ability to look at stats #####
+##### Add ability to look at skills #####
+##### Add ability to look at spells #####
+##### Add ability to look at weapons #####
+##### Add ability to look at armor #####
+##### Add ability to look at items #####
+##### Add monsters ability to attack #####
+##### Add ability to run away #####
+##### Add ability to use items #####
+##### Add ability to use skills #####
+##### Add ability to use spells #####
+##### Add ability to use weapons #####
+##### Add ability to use armor #####
+##### Add ability to use items #####
 
 global room
 
