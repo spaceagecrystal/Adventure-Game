@@ -224,7 +224,10 @@ def battle():
     if atFirst:
         newRoll = randomEnemy()
         monster = monsters[newRoll]
+        global monsterName
         monsterName = monster["name"]
+        global monsterHP
+        monsterHP = monster["hp"]
         print("You are attacked by a " + monsterName + ".")
         battleState = True
         print("Oh my god what now, you think. You are in battle again!")
@@ -240,17 +243,21 @@ def battle():
             sys.exit(0)
 
         elif command == "attack":
-            monsterName = monster["name"]
-            monster["hp"] -= 5
-            print("You hit " + monsterName + " for 5 damage!")
-            print(monsterName + " has " + str(monster["hp"]) + " hitpoints left!")
+            newRoll = dice.D4()
+            monsterHP -= newRoll
+            newHp = monsterHP - newRoll
+            print("You hit " + monsterName + " for " + str(newRoll) + " damage!")
+            print(monsterName + " has " + str(newHp) + " hitpoints left!")
 
-            if monster["hp"] <= 0:
+            if monsterHP <= 0:
                 print(monsterName + " is defeated! It runs away!")
                 battleState = False
                 atFirst = True
+                first_level()
             else:
                 atFirst = False
+                command = "attack"
+                battleState = True
                 battle()
     else:
         first_level()
