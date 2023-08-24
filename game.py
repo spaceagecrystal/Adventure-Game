@@ -4,8 +4,11 @@ import random
 import sqlite3
 
 #####: This is a work in progress. I am currently working on the database and inventory system.#####
+
+#####!!!! remove all collecting of email addresses !!!!#####
+
+
 ##### Add ability to look at monsters #####
-##### Add ability to look at inventory #####
 ##### Add ability to look at character #####
 ##### Add ability to look at location #####
 ##### Add ability to look at map #####
@@ -354,6 +357,10 @@ def second_level():
             "You are outside a cathedral. There is a path to the south and east. Something seems strange, as if the wind itself cried for something lost."
         )
         second_level()
+        
+    elif command == "use key":
+        print("You carefully place the key in the lock on the cathedral door. The door opens into an enormous elegant chamber.")
+        second_level()
 
     elif room == "second room" and command == "go south":
         print("You go south to the Village Center.")
@@ -384,6 +391,9 @@ def second_level():
         second_level()
     elif command == "exit":
         sys.exit(0)
+    elif command == "inventory":
+        display_inventory()
+        second_level()
 
 # Third Level
 def third_level():
@@ -477,17 +487,19 @@ def saveGame(saveGameLoc):
             conn, "savepoint", location=saveGameLoc, quest="The shiny object", numberSave=lastSaved[0]+1
         )
 
-
-          
-start_game()
-load_game()
 conn = create_connection()
 
 cursor = conn.cursor()
-cursor.execute('''
+""" cursor.execute('''
             CREATE TABLE IF NOT EXISTS savepoint (
                 location TEXT,
                 quest TEXT,
                 numberSave INTEGER)
         ''')
-        
+cursor.execute(''' 
+               INSERT INTO savepoint
+               (location, quest, numberSave)
+                VALUES ('town', 'cat', 1)''')
+         """
+start_game()
+load_game()
