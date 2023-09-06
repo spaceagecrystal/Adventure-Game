@@ -141,6 +141,20 @@ def display_inventory():
     cursor.close()
     conn.close()
 
+def MainControls(command):
+        # Main controls
+    if command == "help":
+        print(
+            "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, rest, exit, help"
+        )
+    elif command == "exit":
+        sys.exit(0)
+    elif command == "inventory":
+        display_inventory()
+    else:
+        print("I don't understand that.")
+
+
 
 # Example usage
 monster1 = {
@@ -325,26 +339,14 @@ def first_level():
             print("This is difficult! But be persistent!")
             first_level()
 
-    elif command == "inventory":
-        display_inventory()
-        first_level()
-
-    elif command == "help":
-        print(
-            "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, exit, help"
-        )
-        first_level()
-
-    elif command == "exit":
-        sys.exit(0)
-
     elif room == "first room" and command == "save game":
         print("You save the game.")
         saveGame("town")
 
-    else:
-        print("I don't understand that.")
-        first_level()
+    else: 
+        MainControls(command)
+
+    first_level()
 
 
 # Second level
@@ -375,25 +377,12 @@ def second_level():
         print("You save the game.")
         saveGame("cathedral")
         second_level()
+    else: 
+        MainControls(command)
+    
+    second_level();
 
-    elif command == "exit":
-        sys.exit(0)
 
-    else:
-        print("I'm sorry, I don't understand that.")
-        second_level()
-
-    # Main controls
-    if command == "help":
-        print(
-            "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, rest, exit, help"
-        )
-        second_level()
-    elif command == "exit":
-        sys.exit(0)
-    elif command == "inventory":
-        display_inventory()
-        second_level()
 
 # Third Level
 def third_level():
@@ -419,24 +408,10 @@ def third_level():
         print("You save the game.")
         saveGame("mountain")
         third_level()
+    else: 
+        MainControls(command)
 
-    elif command == "exit":
-        sys.exit(0)
-
-    else:
-        print("I'm sorry, I don't understand that.")
-        third_level()
-
-    # Main controls
-    if command == "help":
-        print(
-            "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, rest, exit, help"
-        )
-        third_level()
-    
-    elif command == "exit":
-        sys.exit(0)
-
+    third_level()
 
 # Start game
 def start_game():
