@@ -7,6 +7,9 @@ import sqlite3
 ##### This is a text based adventure game #####
 #####: This is a work in progress. I am currently working on the database and inventory system.#####
 
+
+##### To do list #####
+
 ##### Add ability to look at monsters #####
 ##### Add ability to look at character #####
 ##### Add ability to look at location #####
