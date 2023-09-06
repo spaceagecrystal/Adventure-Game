@@ -462,19 +462,5 @@ def saveGame(saveGameLoc):
             conn, "savepoint", location=saveGameLoc, quest="The shiny object", numberSave=lastSaved[0]+1
         )
 
-conn = create_connection()
-
-cursor = conn.cursor()
-""" cursor.execute('''
-            CREATE TABLE IF NOT EXISTS savepoint (
-                location TEXT,
-                quest TEXT,
-                numberSave INTEGER)
-        ''')
-cursor.execute(''' 
-               INSERT INTO savepoint
-               (location, quest, numberSave)
-                VALUES ('town', 'cat', 1)''')
-         """
 start_game()
 load_game()
