@@ -3,10 +3,9 @@ import sys
 import random
 import sqlite3
 
+##### Written by Mitch Greer 2023 #####
+##### This is a text based adventure game #####
 #####: This is a work in progress. I am currently working on the database and inventory system.#####
-
-#####!!!! remove all collecting of email addresses !!!!#####
-
 
 ##### Add ability to look at monsters #####
 ##### Add ability to look at character #####
@@ -27,6 +26,12 @@ import sqlite3
 ##### Add ability to use weapons #####
 ##### Add ability to use armor #####
 ##### Add ability to use items #####
+##### Add conversation system #####
+##### Add ability to talk to monsters #####
+##### Add ability to talk to characters #####
+##### Add ability to talk to NPCs #####
+##### Add ability to talk to animals #####
+
 
 global room
 
@@ -356,13 +361,13 @@ def second_level():
 
     if room == "second room" and command == "look room":
         print(
-            "You are outside a cathedral. There is a path to the south and east. Something seems strange, as if the wind itself cried for something lost."
+            "You are outside a cathedral. There is a path to the south, east and west. Something seems strange, as if the wind itself cried for something lost."
         )
         second_level()
         
     elif command == "use key":
         print("You carefully place the key in the lock on the cathedral door. The door opens into an enormous elegant chamber.")
-        second_level()
+        fifth_level()
 
     elif room == "second room" and command == "go south":
         print("You go south to the Village Center.")
@@ -372,6 +377,15 @@ def second_level():
         print("You go east to the base of a mountain")
         room = "third room"
         third_level()
+    
+    elif room == "second room" and command == "go west":
+        print("You go west to the monastery")
+        room = "fourth room"
+        fourth_level()
+    elif room == "second room" and command == "go north":
+        print("You enter the cathedral.")
+        room = "fifth room"
+        fifth_level()
     
     elif room == "second room" and command == "save game":
         print("You save the game.")
@@ -412,6 +426,50 @@ def third_level():
         MainControls(command)
 
     third_level()
+
+# Fourth Level
+def fourth_level():
+
+    room = "fourth room"
+    command = input("Enter command:")
+    if room == "fourth room" and command == "look room":
+        print(
+            "You see a series of buildings, some of which are in ruins, others of which are intact. There is a path to the east."
+        )
+    elif room == "fourth room" and command == "save game":
+        print("You save the game.")
+        saveGame("monastery")
+        third_level()
+    elif room == "fourth room" and command == "go east":
+        print("You go east to the cathedral entrance.")        
+        room = "second room"
+        second_level()
+    else: 
+        MainControls(command)
+    fourth_level()
+
+def fifth_level():
+
+    room = "fifth room"
+    command = input("Enter command:")
+
+    if room == "fifth room" and command == "look room":
+        print(
+            "You are inside the cathedral. Shadows play through beams of light in the partially destroyed interior. It is quiet. In the far distance you hear footsteps. There is a path to the south."
+        )
+    elif room == "fifth room" and command == "save game":
+        print("You save the game.")
+        saveGame("inside cathedral") 
+        fifth_level()
+
+    elif room == "fifth room" and command == "go south":
+        print("You go south to the cathedral entrance.")        
+        room = "second room"
+        second_level()
+    else: 
+        MainControls(command)
+    fifth_level()
+        
 
 # Start game
 def start_game():
