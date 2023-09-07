@@ -159,6 +159,8 @@ def MainControls(command):
         sys.exit(0)
     elif command == "inventory":
         display_inventory()
+    elif command == "rest":
+        print("You make a clearing and set yourself to rest in the tall grass for awhile. You feel refreshed. Your hitpoints are restored.")
     else:
         print("I don't understand that.")
 
