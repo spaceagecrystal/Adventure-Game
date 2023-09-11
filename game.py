@@ -110,12 +110,12 @@ def mainConnect():
     if choice == "1":
         username = input("Enter username: ")
         job = input("Are you a Warrior, Mage, Healer, or Palladin:  ")
-        create_record(
-            conn,
-            "users",
-            username=username,
-            job=job,
-        )
+       #### create_record(
+       ###     conn,
+       ###     "users",
+      ##      username=username,
+       ###     job=job,
+        ###)
 
     return conn
 
@@ -476,7 +476,7 @@ def fifth_level():
 
 # Start game
 def start_game():
-    conn = mainConnect()
+    mainConnect()
     print("Welcome to the Ravinia!")
     print(
         "In the land of Ravinia, you find yourself on the outskirts of the village, which sang with the open folds of spore flowers. As a fairy warrior, you are returning after a long journey, and you have heard that still a few Groats, ancient"
