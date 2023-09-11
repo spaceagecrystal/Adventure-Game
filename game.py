@@ -1,4 +1,4 @@
-import dice
+import dice_test
 import sys
 import random
 import sqlite3
@@ -12,7 +12,6 @@ import sqlite3
 
 ##### Add ability to look at monsters #####
 ##### Add ability to look at character #####
-##### Add ability to look at location #####
 ##### Add ability to look at map #####
 ##### Add ability to look at quests #####
 ##### Add ability to look at stats #####
@@ -235,12 +234,12 @@ class Enemy:
 
     def attack(self):
         print(self.name + " attacks!")
-        newRoll = dice.D4()
+        newRoll = dice_test.D4()
         if newRoll == 1:
             print(self.name + " hits!")
 
     def defend(self):
-        newRoll = dice.D4()
+        newRoll = dice_test.D4()
         if newRoll != 1:
             print("You miss!")
 
@@ -253,7 +252,7 @@ room = "first room"
 
 # Game loop
 def battleTest():
-    newRoll = dice.D4()
+    newRoll = dice_test.D4()
     if newRoll == 1:
         battle()
     else:
@@ -287,7 +286,7 @@ def battle():
             sys.exit(0)
 
         elif command == "attack":
-            newRoll = dice.D4()
+            newRoll = dice_test.D4()
             monsterHP -= newRoll
             newHp = monsterHP - newRoll
             print("You hit " + monsterName + " for " + str(newRoll) + " damage!")
@@ -331,7 +330,7 @@ def first_level():
         first_level()
 
     if command == "get cat":
-        newRoll = dice.D4()
+        newRoll = dice_test.D4()
         if newRoll == 1:
             print("You got the cat! You add cat to inventory.")
             print(
