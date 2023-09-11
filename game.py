@@ -19,7 +19,6 @@ import sqlite3
 ##### Add ability to look at spells #####
 ##### Add ability to look at weapons #####
 ##### Add ability to look at armor #####
-##### Add ability to look at items #####
 ##### Add monsters ability to attack #####
 ##### Add ability to run away #####
 ##### Add ability to use items #####
