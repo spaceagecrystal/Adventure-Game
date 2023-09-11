@@ -22,14 +22,14 @@ import sqlite3
 ##### Add monsters ability to attack #####
 ##### Add ability to run away #####
 ##### Add ability to use items #####
-##### Add ability to use skills #####
+##### Add ability to use skills ####
 ##### Add ability to use spells #####
 ##### Add ability to use weapons #####
 ##### Add ability to use armor #####
 ##### Add ability to use items #####
 ##### Add conversation system #####
 ##### Add ability to talk to monsters #####
-##### Add ability to talk to characters #####
+##### Add ability to talk to chaacters #####
 ##### Add ability to talk to NPCs #####
 ##### Add ability to talk to animals #####
 
@@ -152,6 +152,10 @@ def MainControls(command):
     if command == "help":
         print(
             "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, rest, exit, help"
+        )
+    elif command == "quest":
+        print(
+            "You are on a quest to find the lost cat. You have been told that it is somewhere in the village."
         )
     elif command == "exit":
         sys.exit(0)
