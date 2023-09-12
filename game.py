@@ -13,12 +13,10 @@ import sqlite3
 ##### Add ability to look at monsters #####
 ##### Add ability to look at character #####
 ##### Add ability to look at map #####
-##### Add ability to look at quests #####
 ##### Add ability to look at stats #####
 ##### Add ability to look at skills #####
 ##### Add ability to look at spells #####
 ##### Add ability to look at weapons #####
-##### Add ability to look at armor #####
 ##### Add monsters ability to attack #####
 ##### Add ability to run away #####
 ##### Add ability to use items #####
@@ -151,8 +149,11 @@ def MainControls(command):
         # Main controls
     if command == "help":
         print(
-            "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, rest, exit, help"
+            "Commands are: quest, look armor, look room, go north, go south, go east, go west, get item, use item, attack, defend, rest, exit, help"
         )
+    elif command == "look armor":
+        print(
+            "You are wearing a suit of armor. It is made of steel and is very heavy."
     elif command == "quest":
         print(
             "You are on a quest to find the lost cat. You have been told that it is somewhere in the village."
