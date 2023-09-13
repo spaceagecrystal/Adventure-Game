@@ -14,20 +14,16 @@ import sqlite3
 ##### Add ability to look at character #####
 ##### Add ability to look at map #####
 ##### Add ability to look at stats #####
-##### Add ability to look at skills #####
-##### Add ability to look at spells #####
-##### Add ability to look at weapons #####
 ##### Add monsters ability to attack #####
 ##### Add ability to run away #####
 ##### Add ability to use items #####
 ##### Add ability to use skills ####
 ##### Add ability to use spells #####
-##### Add ability to use weapons #####
 ##### Add ability to use armor #####
 ##### Add ability to use items #####
 ##### Add conversation system #####
 ##### Add ability to talk to monsters #####
-##### Add ability to talk to chaacters #####
+##### Add ability to talk to characters #####
 ##### Add ability to talk to NPCs #####
 ##### Add ability to talk to animals #####
 
@@ -158,6 +154,21 @@ def MainControls(command):
         print(
             "You are on a quest to find the lost cat. You have been told that it is somewhere in the village."
         )
+    elif command == "look spells":
+        print(
+            "You are currently not carrying any spells. Maybe you can find some in the monastery."
+        )
+    elif command == "look weapons":
+        print(
+            "You are carrying Solitar, a sword that is made of the enchanted metal of the sun."
+        )
+    elif command == "look skills":
+        print(
+            "As a fairy warrior, you are a master of the sword and the bow. You are also a master of the art of healing."
+        )
+    elif command == "equip bow":
+        print(
+            "You equip the bow. You are now carrying the bow."
     elif command == "exit":
         sys.exit(0)
     elif command == "inventory":
