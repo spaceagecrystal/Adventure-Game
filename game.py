@@ -1,4 +1,4 @@
-import dice
+import dice_test
 import sys
 import random
 import sqlite3
@@ -11,21 +11,13 @@ import sqlite3
 
 ##### Add ability to look at monsters #####
 ##### Add ability to look at character #####
-##### Add ability to look at location #####
 ##### Add ability to look at map #####
-##### Add ability to look at quests #####
 ##### Add ability to look at stats #####
-##### Add ability to look at skills #####
-##### Add ability to look at spells #####
-##### Add ability to look at weapons #####
-##### Add ability to look at armor #####
-##### Add ability to look at items #####
 ##### Add monsters ability to attack #####
 ##### Add ability to run away #####
 ##### Add ability to use items #####
-##### Add ability to use skills #####
+##### Add ability to use skills ####
 ##### Add ability to use spells #####
-##### Add ability to use weapons #####
 ##### Add ability to use armor #####
 ##### Add ability to use items #####
 ##### Add conversation system #####
@@ -151,8 +143,30 @@ def MainControls(command):
         # Main controls
     if command == "help":
         print(
-            "Commands are: look room, go north, go south, go east, go west, get item, use item, attack, defend, rest, exit, help"
+            "Commands are: quest, look armor, look room, go north, go south, go east, go west, get item, use item, attack, defend, rest, exit, help"
         )
+    elif command == "look armor":
+        print(
+            "You are wearing a suit of armor. It is made of steel and is very heavy."
+    elif command == "quest":
+        print(
+            "You are on a quest to find the lost cat. You have been told that it is somewhere in the village."
+        )
+    elif command == "look spells":
+        print(
+            "You are currently not carrying any spells. Maybe you can find some in the monastery."
+        )
+    elif command == "look weapons":
+        print(
+            "You are carrying Solitar, a sword that is made of the enchanted metal of the sun."
+        )
+    elif command == "look skills":
+        print(
+            "As a fairy warrior, you are a master of the sword and the bow. You are also a master of the art of healing."
+        )
+    elif command == "equip bow":
+        print(
+            "You equip the bow. You are now carrying the bow."
     elif command == "exit":
         sys.exit(0)
     elif command == "inventory":
@@ -235,12 +249,12 @@ class Enemy:
 
     def attack(self):
         print(self.name + " attacks!")
-        newRoll = dice.D4()
+        newRoll = dice_test.D4()
         if newRoll == 1:
             print(self.name + " hits!")
 
     def defend(self):
-        newRoll = dice.D4()
+        newRoll = dice_test.D4()
         if newRoll != 1:
             print("You miss!")
 
@@ -253,7 +267,7 @@ room = "first room"
 
 # Game loop
 def battleTest():
-    newRoll = dice.D4()
+    newRoll = dice_test.D4()
     if newRoll == 1:
         battle()
     else:
@@ -287,7 +301,7 @@ def battle():
             sys.exit(0)
 
         elif command == "attack":
-            newRoll = dice.D4()
+            newRoll = dice_test.D4()
             monsterHP -= newRoll
             newHp = monsterHP - newRoll
             print("You hit " + monsterName + " for " + str(newRoll) + " damage!")
@@ -331,7 +345,7 @@ def first_level():
         first_level()
 
     if command == "get cat":
-        newRoll = dice.D4()
+        newRoll = dice_test.D4()
         if newRoll == 1:
             print("You got the cat! You add cat to inventory.")
             print(
