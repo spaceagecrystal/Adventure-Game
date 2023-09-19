@@ -7,7 +7,6 @@ import sqlite3
 ##### This is a text based adventure game #####
 #####: This is a work in progress. I am currently working on the database and inventory system.#####
 
-
 ##### To do list #####
 
 ##### Add ability to look at monsters #####
@@ -33,7 +32,6 @@ import sqlite3
 ##### Add ability to talk to monsters #####
 ##### Add ability to talk to characters #####
 ##### Add ability to talk to NPCs #####
-##### Add ability to talk to animals #####
 
 
 global room
@@ -159,6 +157,8 @@ def MainControls(command):
         sys.exit(0)
     elif command == "inventory":
         display_inventory()
+    elif command == "talk to cat":
+        print("The cat meows at you.")
     elif command == "rest":
         print("You make a clearing and set yourself to rest in the tall grass for awhile. You feel refreshed. Your hitpoints are restored.")
     else:
