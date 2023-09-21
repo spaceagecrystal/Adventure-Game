@@ -4,7 +4,7 @@ import random
 import sqlite3
 
 ##### Written by Mitch Greer 2023 #####
-##### This is a text based adventure game #####
+##### This is a wtext based adventure game #####
 #####: This is a work in progress. I am currently working on the database and inventory system.#####
 
 ##### To do list #####
@@ -13,14 +13,13 @@ import sqlite3
 ##### Add ability to look at character #####
 ##### Add ability to look at map #####
 ##### Add ability to look at stats #####
-##### Add monsters ability to attack #####
+##### Add monsters ability wto attack #####
 ##### Add ability to run away #####
 ##### Add ability to use items #####
 ##### Add ability to use skills ####
 ##### Add ability to use spells #####
 ##### Add ability to use armor #####
 ##### Add ability to use items #####
-##### Add conversation system #####
 ##### Add ability to talk to monsters #####
 ##### Add ability to talk to characters #####
 ##### Add ability to talk to NPCs #####
